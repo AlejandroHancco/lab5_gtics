@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="clearfix mt-3 mt-2 mx-5">
+    <a th:href="@{/centro/profesionales}">
+        <h1 class="float-start link-dark">Profesionales</h1>
+    </a>
+    <a class="btn btn-primary float-end mt-1" style="margin-right: 10px" th:href="@{/centro/citas}">Citas</a>
+    <a class="btn btn-primary float-end mt-1" style="margin-right: 10px" th:href="@{/centro/pacientes}">Pacientes</a>
+    <a class="btn btn-primary float-end mt-1" style="margin-right: 10px" th:href="@{/centro/foro}">Foro</a>
+    <a class="btn btn-primary float-end mt-1" style="margin-right: 10px" th:href="@{/centro/recursos}">Recursos</a>
+</div>
+<hr>
+<div class="container mt-5">
+
+
+
+    <form method="get" action="/flores/search" class="row mt-4">
+
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <select name="idarea" class="form-control">
+                <option value="0">Seleccione Area</option>
+                <option th:each="area : ${areaList}"
+                        th:value="${area.idAreas}"
+                        th:text="${area.nombreArea}"></option>
+            </select>
+        </div>
+
+        <!-- Filtro por fecha -->
+        <div class="col-md-3">
+            <select name="idfecha" class="form-control">
+                <option value="0">Seleccione Fecha</option>
+                <option th:each="fecha : ${fechaList}"
+                        th:value="${fecha.idFechas}"
+                        th:text="${fecha.fechaDisponibilidad}"></option>
+            </select>
+        </div>
+
+        <!-- Filtro por sede -->
+        <div class="col-md-3">
+            <select name="idsede" class="form-control">
+                <option value="0">Seleccione Sede</option>
+                <option th:each="sede : ${sedeList}"
+                        th:value="${sede.idSedes}"
+                        th:text="${sede.nombreSede}"></option>
+            </select>
+        </div>
+
+        <!-- Botón "Buscar" -->
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-success">Buscar</button>
+        </div>
+
+
+    </form>
+
+
+
+
+    <hr class="opacity-0">
+
+    <!-- Lista de flores -->
+    <div class="row">
+        <div class="col-md-4" th:each="profesional : ${profesionalList}">
+            <div class="card mb-4">
+                <img th:src="${profesional.imagen}" class="card-img-top" alt="Imagen de la flor" style="height: 400px; object-fit: cover;" />
+                <div class="card-body">
+                    <h5 class="card-title text-center" th:text="${profesional.nombre}">Nombre de la flor</h5>
+                    <p class="card-text text-muted" th:text="${profesional.descripcionProfesional}">Descripción de la flor</p>
+                    <p class="card-text"><!-- Botones -->
+                    <div class="d-grid gap-2">
+                        <!-- Botón Agregar al carrito -->
+                        <a href="#" class="btn btn-success px-3">
+                            <i class="fas fa-cart-plus"></i> Reservar cita
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function clearSearch() {
+        // Limpia el campo de búsqueda
+        document.querySelector('input[name="query"]').value = '';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.lab5_gtics.Lab5GticsApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.313 s -- in com.example.lab5_gtics.Lab5GticsApplicationTests
