@@ -1,19 +1,33 @@
+<!-- fragments.html -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Fragmentos</title>
 </head>
 <body>
-<div class="clearfix mt-3 mt-2 mx-5">
-    <a th:href="@{/flores/profesionales}">
-        <h1 class="float-start link-dark">Profesionales</h1>
-    </a>
-    <a class="btn btn-primary float-end mt-1" style="margin-right: 10px" th:href="@{/flores/citas}">Citas</a>
-    <a class="btn btn-primary float-end mt-1" style="margin-right: 10px" th:href="@{/flores/pacientes}">Pacientes</a>
-    <a class="btn btn-primary float-end mt-1" style="margin-right: 10px" th:href="@{/flores/foro}">Foro</a>
-    <a class="btn btn-primary float-end mt-1" style="margin-right: 10px" th:href="@{/flores/foro}">Recursos</a>
+<div th:fragment="menu(menuType)">
+    <div class="clearfix mt-3 mt-2 mx-5">
+        <a >
+            <h1 class="float-start link-dark" th:text="${menuType}"></h1>
+        </a>
+        <a class="btn btn-primary float-end mt-1" style="margin-right: 10px"
+           th:if="${menuType != 'Profesionales'}"
+           th:href="@{/centro/profesionales}">Profesionales</a>
+        <a class="btn btn-primary float-end mt-1" style="margin-right: 10px"
+           th:if="${menuType != 'Citas'}"
+           th:href="@{/centro/citas}">Citas</a>
+        <a class="btn btn-primary float-end mt-1" style="margin-right: 10px"
+           th:if="${menuType != 'Pacientes'}"
+           th:href="@{/centro/pacientes}">Pacientes</a>
+        <a class="btn btn-primary float-end mt-1" style="margin-right: 10px"
+           th:if="${menuType != 'Foro'}"
+           th:href="@{/centro/foro}">Foro</a>
+        <a class="btn btn-primary float-end mt-1" style="margin-right: 10px"
+           th:if="${menuType != 'Recursos'}"
+           th:href="@{/centro/recursos}">Recursos</a>
+    </div>
+    <hr>
 </div>
-<hr>
 </body>
 </html>

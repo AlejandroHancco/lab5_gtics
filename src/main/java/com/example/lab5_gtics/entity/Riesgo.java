@@ -3,7 +3,7 @@ package com.example.lab5_gtics.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "riesgos")
+@Table(name = "Riesgos")
 public class Riesgo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
