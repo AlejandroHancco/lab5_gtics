@@ -77,7 +77,7 @@
     </table>
 
     <p class="total" th:text="'Total de canciones recomendadas: ' + ${conteoAlegres}"></p>
-
+<hr class="mt-4">
     <h2>Canciones No Recomendadas</h2>
     <table class="table table-striped">
         <thead>
@@ -104,15 +104,17 @@
 
         </tbody>
     </table>
+
     <p class="total" th:text="'Total de canciones no recomendadas: ' + ${conteoTristes}"></p>
 
-    <h3 class="note">Nota sobre la Salud Mental</h3>
+    <hr class="mt-4">
+    <h3 class="mb-4">Frases de Ánimo</h3>
+    <div class="quote" th:each="frase : ${frasesList}">
+        <p th:text="${frase.frase}"></p>
+    </div>
+    <h3 class="note">Recuerda</h3>
     <p>La salud mental es una parte esencial de nuestro bienestar general. Es importante buscar apoyo y cuidado cuando lo necesitemos.</p>
 
-    <h3>Frases de Ánimo</h3>
-    <div class="quote" th:each="frase : ${frasesDeAnimo}">
-        <p th:text="${frase}"></p>
-    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -2,6 +2,7 @@ package com.example.lab5_gtics.entity;
 
 import jakarta.persistence.*;
 @Entity
+@Table(name = "Canciones")
 public class Canciones {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

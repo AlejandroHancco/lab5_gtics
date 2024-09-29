@@ -28,7 +28,8 @@ public class centroController {
     final PacienteRepository pacienteRepository;
     final ForoRepository foroRepository;
     final CancionesRepository cancionesRepository;
-    public centroController(AreaRepository areaRepository, FechaRepository fechaRepository, ProfesionalRepository profesionalRepository, SedeRepository sedeRepository, RiesgoRepository riesgoRepository,CitaRepository citaRepository,PacienteRepository pacienteRepository,ForoRepository foroRepository,CancionesRepository cancionesRepository) {
+    final FrasesRepository frasesRepository;
+    public centroController(AreaRepository areaRepository, FechaRepository fechaRepository, ProfesionalRepository profesionalRepository, SedeRepository sedeRepository, RiesgoRepository riesgoRepository,CitaRepository citaRepository,PacienteRepository pacienteRepository,ForoRepository foroRepository,CancionesRepository cancionesRepository, FrasesRepository frasesRepository) {
         this.areaRepository = areaRepository;
         this.fechaRepository = fechaRepository;
         this.profesionalRepository = profesionalRepository;
@@ -38,6 +39,7 @@ public class centroController {
         this.pacienteRepository = pacienteRepository;
         this.foroRepository = foroRepository;
         this.cancionesRepository = cancionesRepository;
+        this.frasesRepository = frasesRepository;
     }
     @GetMapping("/profesionales")
     public String showCatalogo(Model model) {
@@ -254,6 +256,7 @@ public class centroController {
         model.addAttribute("cancionesTristes",cancionesRepository.findCancionesTristes());
         model.addAttribute("conteoAlegres",cancionesRepository.countCancionesAlegres());
         model.addAttribute("conteoTristes",cancionesRepository.countCancionesTristes());
+        model.addAttribute("frasesList",frasesRepository.findAll());
     }
     private void packStats (Model model){
 
