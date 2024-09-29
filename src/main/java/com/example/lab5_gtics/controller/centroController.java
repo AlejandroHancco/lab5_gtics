@@ -59,8 +59,8 @@ public class centroController {
     @GetMapping("/pacientes")
     public String showPacientes(Model model) {
         packAtributes(model);
-        List<Cita> citaList = citaRepository.findAll();
-        model.addAttribute("citaList", citaList);
+        List<Paciente> pacienteList = pacienteRepository.findAll();
+        model.addAttribute("pacienteList", pacienteList);
         packStats(model);
         return "pacientes";
     }

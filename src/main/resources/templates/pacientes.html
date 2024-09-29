@@ -48,15 +48,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="cita:${citaList}">
-            <td th:text="${cita.idCitas}"></td>
-            <td th:text="${cita.paciente.getNombrePaciente()}"></td>
-            <td th:text="${cita.paciente.dni}"></td>
-            <td th:text="${cita.paciente.edad}"></td>
-
-
-
+        <tr th:each="paciente : ${pacienteList}">
+            <td th:text="${paciente.idPacientes}"></td>
+            <td th:text="${paciente.nombrePaciente}"></td>
+            <td th:text="${paciente.dni}"></td>
+            <td th:text="${paciente.edad}"></td>
         </tr>
+
 
         </tbody>
     </table>
