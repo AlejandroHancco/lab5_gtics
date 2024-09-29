@@ -2,6 +2,10 @@ package com.example.lab5_gtics.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 @Entity
 @Table(name = "Fechas")
 
@@ -25,20 +29,25 @@ public class Fecha {
     public void setIdFechas(Integer idFechas) {
         this.idFechas = idFechas;
     }
+    public Profesional getProfesional() {
+        return profesional;
+    }
+
+    public void setProfesional(Profesional profesional) {
+        this.profesional = profesional;}
 
     public String getFechaDisponibilidad() {
-        return fechaDisponibilidad;
+        LocalDate fecha = LocalDate.parse(fechaDisponibilidad); // Convertir String a LocalDate
+
+        // Formatear la fecha
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
+        return fecha.format(formatter); // Devuelve la fecha en formato legible
     }
 
     public void setFechaDisponibilidad(String fechaDisponibilidad) {
         this.fechaDisponibilidad = fechaDisponibilidad;
     }
 
-    public Profesional getProfesional() {
-        return profesional;
+
     }
 
-    public void setProfesional(Profesional profesional) {
-        this.profesional = profesional;
-    }
-}

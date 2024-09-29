@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/centro")
@@ -224,6 +225,7 @@ public class centroController {
             cita.setPaciente(nuevoPaciente);
 
         }
+        cita.setPrecio(80 + (20 * new Random().nextDouble()));
         citaRepository.save(cita);
 
         redirectAttributes.addFlashAttribute("msg", "Cita guardada exitosamente");
@@ -257,6 +259,8 @@ public class centroController {
         model.addAttribute("conteoAlegres",cancionesRepository.countCancionesAlegres());
         model.addAttribute("conteoTristes",cancionesRepository.countCancionesTristes());
         model.addAttribute("frasesList",frasesRepository.findAll());
+        model.addAttribute("countAlegres",cancionesRepository.countCancionesTipo(1));
+        model.addAttribute("countTristes",cancionesRepository.countCancionesTipo(2));
     }
     private void packStats (Model model){
 

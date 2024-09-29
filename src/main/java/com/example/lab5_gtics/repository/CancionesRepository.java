@@ -1,5 +1,6 @@
 package com.example.lab5_gtics.repository;
 
+import com.example.lab5_gtics.dto.CancionesporTipo;
 import com.example.lab5_gtics.entity.Canciones;
 import com.example.lab5_gtics.entity.Profesional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +22,10 @@ public interface CancionesRepository extends JpaRepository<Canciones, Integer> {
     Integer countCancionesAlegres();
     @Query("SELECT COUNT(c) FROM Canciones c WHERE c.tipoCancion = 2")
     Integer countCancionesTristes();
+
+    @Query("SELECT COUNT(c) FROM Canciones c WHERE c.tipoCancion = 1")
+    List<CancionesporTipo> countCancionesTipo(int tipo);
+
 
 
 }
