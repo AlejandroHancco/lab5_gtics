@@ -4,7 +4,7 @@ package com.example.lab5_gtics.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "pacientes")
+@Table(name = "Pacientes")
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

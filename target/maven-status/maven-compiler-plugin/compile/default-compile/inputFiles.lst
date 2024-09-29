@@ -1,10 +1,16 @@
-D:\Documentos\Documentos PUCP\2024-2\lab5_gtics\src\main\java\com\example\lab5_gtics\controller\centroController.java
-D:\Documentos\Documentos PUCP\2024-2\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Area.java
-D:\Documentos\Documentos PUCP\2024-2\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Fecha.java
-D:\Documentos\Documentos PUCP\2024-2\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Profesional.java
-D:\Documentos\Documentos PUCP\2024-2\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Sede.java
-D:\Documentos\Documentos PUCP\2024-2\lab5_gtics\src\main\java\com\example\lab5_gtics\Lab5GticsApplication.java
-D:\Documentos\Documentos PUCP\2024-2\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\AreaRepository.java
-D:\Documentos\Documentos PUCP\2024-2\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\FechaRepository.java
-D:\Documentos\Documentos PUCP\2024-2\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\ProfesionalRepository.java
-D:\Documentos\Documentos PUCP\2024-2\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\SedeRepository.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\controller\centroController.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Area.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Cita.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Fecha.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Paciente.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Profesional.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Riesgo.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\entity\Sede.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\Lab5GticsApplication.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\AreaRepository.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\CitaRepository.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\FechaRepository.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\PacienteRepository.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\ProfesionalRepository.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\RiesgoRepository.java
+C:\Users\User\Downloads\lab5_gtics\src\main\java\com\example\lab5_gtics\repository\SedeRepository.java
