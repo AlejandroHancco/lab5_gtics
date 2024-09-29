@@ -43,6 +43,47 @@ public class centroController {
         model.addAttribute("profesionalList", profesionalList);
         return "profesionales";
     }
+    @GetMapping("/citas")
+    public String showCitas(Model model) {
+        packAtributes(model);
+        List<Cita> citaList = citaRepository.findAll();
+        model.addAttribute("citaList", citaList);
+        packStats(model);
+        return "citas";
+    }
+    @GetMapping("/pacientes")
+    public String showPacientes(Model model) {
+        packAtributes(model);
+        List<Cita> citaList = citaRepository.findAll();
+        model.addAttribute("citaList", citaList);
+        packStats(model);
+        return "pacientes";
+    }
+
+    @GetMapping("/citas/search")
+    public String filterCitas(Model model,
+                              @RequestParam Integer idprofesional,
+                              @RequestParam Integer idarea,
+                              @RequestParam Integer idfecha,
+                              @RequestParam Integer idriesgo,
+                              @RequestParam Integer idsede,
+                              RedirectAttributes redirectAttributes) {
+
+        packAtributes(model);
+        packStats(model);
+        List<Cita> citaList = citaRepository.filtradoQuery(idprofesional, idarea, idfecha, idriesgo, idsede);
+
+        if (citaList.isEmpty()) {
+            redirectAttributes.addFlashAttribute("msg", "No se encontraron citas.");
+            redirectAttributes.addFlashAttribute("alert", "alert-danger");
+            return "redirect:/centro/citas";
+        }
+
+        model.addAttribute("citaList", citaList);
+        return "citas";
+    }
+
+
 
 
     @GetMapping("/search")
@@ -151,12 +192,20 @@ public class centroController {
 
         List<Sede> sedeList = sedeRepository.findAll();
         List<Riesgo> riesgoList=riesgoRepository.findAll();
+        List<Profesional> profesionalList=profesionalRepository.findAll();
 
         model.addAttribute("areaList", areaList);
         model.addAttribute("fechaList", fechaList);
 
         model.addAttribute("sedeList", sedeList);
         model.addAttribute("riesgoList", riesgoList);
+        model.addAttribute("profesionalList", profesionalList);
+    }
+    private void packStats (Model model){
+
+        model.addAttribute("citasporProfesional", citaRepository.getCitasporProfesional());
+        model.addAttribute("citasporSede", citaRepository.getCitasporSede());
+        model.addAttribute("citasporArea", citaRepository.getCitasporArea());
     }
 
 
