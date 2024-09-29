@@ -2,6 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
+    body {
+        background-color: #f4f7fa;
+        font-family: Arial, sans-serif;
+    }
     .table th {
         font-weight: bold; /* Resaltar texto */
     }
@@ -24,7 +28,7 @@
 <div th:replace="fragmentos/header :: menu('Citas')"></div>
 <div class="container mt-5">
 
-    <div th:if="${msg}" th:class="${'alert ' + alert}" role="alert">
+    <div th:if="${msg}" th:class="${'alert ' + alert}" role="alert" style="display: flex; justify-content: space-between; align-items: center;">
         <span th:text="${msg}"></span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
