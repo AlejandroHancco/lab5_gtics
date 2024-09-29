@@ -26,8 +26,8 @@ public class centroController {
     final RiesgoRepository riesgoRepository;
     final CitaRepository citaRepository;
     final PacienteRepository pacienteRepository;
-
-    public centroController(AreaRepository areaRepository, FechaRepository fechaRepository, ProfesionalRepository profesionalRepository, SedeRepository sedeRepository, RiesgoRepository riesgoRepository,CitaRepository citaRepository,PacienteRepository pacienteRepository) {
+    final ForoRepository foroRepository;
+    public centroController(AreaRepository areaRepository, FechaRepository fechaRepository, ProfesionalRepository profesionalRepository, SedeRepository sedeRepository, RiesgoRepository riesgoRepository,CitaRepository citaRepository,PacienteRepository pacienteRepository,ForoRepository foroRepository) {
         this.areaRepository = areaRepository;
         this.fechaRepository = fechaRepository;
         this.profesionalRepository = profesionalRepository;
@@ -35,6 +35,7 @@ public class centroController {
         this.riesgoRepository = riesgoRepository;
         this.citaRepository = citaRepository;
         this.pacienteRepository = pacienteRepository;
+        this.foroRepository = foroRepository;
     }
     @GetMapping("/profesionales")
     public String showCatalogo(Model model) {
@@ -103,6 +104,46 @@ public class centroController {
         return "formCita";
 
     }
+    @GetMapping("/nuevoComentario")
+    public String nuevoComentario (Model model) {
+        packAtributes(model);
+        List<Profesional> profesionalList = profesionalRepository.findAll();
+        model.addAttribute("profesionalList", profesionalList);
+        return "formComentario";
+
+    }
+    @PostMapping("/saveComentario")
+    public String saveComentario (Model model,@RequestParam(value = "id", required = false) Integer id,
+                                  @RequestParam("firstName") String firstName,
+                                  @RequestParam("lastName") String lastName,
+                                  @RequestParam("edad") Integer edad,
+                                  @RequestParam("mensaje") String mensaje,RedirectAttributes redirectAttributes ) {
+        Foro foro = new Foro();
+        foro.setComentario(mensaje);
+        foro.setNombrePersona(firstName + " " + lastName);
+        foro.setEdad(edad);
+
+        foroRepository.save(foro);
+
+        redirectAttributes.addFlashAttribute("msg", "El comentario se publicó exitosamente");
+        redirectAttributes.addFlashAttribute("alert", "alert-success");
+
+        return "redirect:/centro/foro";
+
+    }
+    @GetMapping("/foro")
+    public String showForo (Model model) {
+        packAtributes(model);
+       return "foro";
+
+    }
+    @GetMapping("/recursos")
+    public String showRecursos (Model model) {
+        packAtributes(model);
+        return "recursos";
+
+    }
+
 
 
     @PostMapping("/save")
@@ -111,6 +152,7 @@ public class centroController {
             @RequestParam("firstName") String firstName,
             @RequestParam("lastName") String lastName,
             @RequestParam("dni") String dni,
+            @RequestParam("edad") Integer edad,
             @RequestParam("idriesgo") Integer idriesgo,
             @RequestParam("consulta") String consulta,
             @RequestParam("idarea") Integer idarea,
@@ -173,10 +215,15 @@ public class centroController {
             Paciente nuevoPaciente = new Paciente();
             nuevoPaciente.setNombrePaciente(firstName + " " + lastName);
             nuevoPaciente.setDni(dni);
+            nuevoPaciente.setEdad(edad);
             nuevoPaciente = pacienteRepository.save(nuevoPaciente);
             cita.setPaciente(nuevoPaciente);
-        }
 
+        }
+        citaRepository.save(cita);
+
+        redirectAttributes.addFlashAttribute("msg", "Cita guardada exitosamente");
+        redirectAttributes.addFlashAttribute("alert", "alert-success");
 
         return "redirect:/centro/profesionales";
     }
@@ -200,12 +247,14 @@ public class centroController {
         model.addAttribute("sedeList", sedeList);
         model.addAttribute("riesgoList", riesgoList);
         model.addAttribute("profesionalList", profesionalList);
+        model.addAttribute("foroList",foroRepository.findAll());
     }
     private void packStats (Model model){
 
         model.addAttribute("citasporProfesional", citaRepository.getCitasporProfesional());
         model.addAttribute("citasporSede", citaRepository.getCitasporSede());
         model.addAttribute("citasporArea", citaRepository.getCitasporArea());
+        model.addAttribute("pacienteporRiesgo", pacienteRepository.getPacienteporRiesgo());
     }
 
 

@@ -18,21 +18,25 @@ public interface CitaRepository extends JpaRepository<Cita, Integer> {
     List<Cita> filtradoQuery(@Param("idprofesional") Integer  idprofesional, @Param("idarea") Integer  idarea, @Param("idfecha") Integer  idfecha,@Param("idriesgo") Integer  idriesgo,@Param("idsede") Integer  idsede);
 
 
-    @Query(value = "SELECT s.nombreSede as sede, COUNT(*) as cantidad " +
-            "FROM Citas c " +
-            "JOIN Sedes s ON c.idSede = s.idSedes " +
+    @Query(value = "SELECT s.nombreSede as sede, COUNT(c.idCitas) as cantidad " +
+            "FROM Sedes s " +
+            "LEFT JOIN Citas c ON c.idSede = s.idSedes " +
             "GROUP BY s.nombreSede", nativeQuery = true)
     List<CitaporSede> getCitasporSede();
 
-    @Query(value = "SELECT p.nombre as profesional, COUNT(*) as cantidad " +
-            "FROM Citas c " +
-            "JOIN Profesionales p ON c.idProfesional = p.idProfesionales " +
-            "GROUP BY p.nombre", nativeQuery = true)
+
+    @Query(value = "SELECT p.nombre as profesional, COUNT(c.idCitas) as cantidad " +
+            "FROM Profesionales p " +
+            "LEFT JOIN Citas c ON p.idProfesionales = c.idProfesional " +
+            "GROUP BY p.idProfesionales", nativeQuery = true)
     List<CitaporProfesional> getCitasporProfesional();
 
-    @Query(value = "SELECT a.nombreArea as area, COUNT(*) as cantidad " +
-            "FROM Citas c " +
-            "JOIN Areas a ON c.idArea = a.idAreas " +
+
+    @Query(value = "SELECT a.nombreArea as area, COUNT(c.idCitas) as cantidad " +
+            "FROM Areas a " +
+            "LEFT JOIN Citas c ON c.idArea = a.idAreas " +
             "GROUP BY a.nombreArea", nativeQuery = true)
     List<CitaporArea> getCitasporArea();
+
+
 }
