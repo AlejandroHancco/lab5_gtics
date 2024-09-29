@@ -21,10 +21,7 @@
 
         h1, h2, h3 {
             color: #333;
-        }
-
-        .song-list {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .note {
@@ -38,6 +35,13 @@
             padding: 10px;
             background-color: #e9ecef;
             border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .total {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #007bff;
         }
     </style>
 </head>
@@ -45,23 +49,62 @@
 <div th:replace="fragmentos/header :: menu('Recursos')"></div>
 <div class="container mt-5">
 
-    <h1>Recursos para el Ánimo</h1>
-
     <h2>Canciones Recomendadas</h2>
-    <ul class="list-group mb-4 song-list">
-        <li class="list-group-item" th:each="cancion : ${cancionesRecomendadas}">
-            <span th:text="${cancion}"></span>
-        </li>
-    </ul>
-    <p th:text="'Total de canciones recomendadas: ' + ${totalRecomendadas}"></p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nombre de la Canción</th>
+            <th>Cantante</th>
+            <th>Género</th>
+            <th>Escuchar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cancion : ${cancionesAlegres}">
+            <td th:text="${cancion.nombreCancion}"></td>
+            <td th:text="${cancion.cantante}"></td>
+            <td th:text="${cancion.genero}"></td>
+            <td>
+                <a th:href="${cancion.url}" target="_blank" title="Escuchar"  class="ms-3">
+                    <i class="fab fa-spotify" style="font-size: 20px; color: #1DB954;"></i>
+                </a>
+            </td>
+
+
+        </tr>
+
+        </tbody>
+    </table>
+
+    <p class="total" th:text="'Total de canciones recomendadas: ' + ${conteoAlegres}"></p>
 
     <h2>Canciones No Recomendadas</h2>
-    <ul class="list-group mb-4 song-list">
-        <li class="list-group-item" th:each="cancion : ${cancionesNoRecomendadas}">
-            <span th:text="${cancion}"></span>
-        </li>
-    </ul>
-    <p th:text="'Total de canciones no recomendadas: ' + ${totalNoRecomendadas}"></p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nombre de la Canción</th>
+            <th>Cantante</th>
+            <th>Género</th>
+            <th>Escuchar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cancion : ${cancionesTristes}">
+            <td th:text="${cancion.nombreCancion}"></td>
+            <td th:text="${cancion.cantante}"></td>
+            <td th:text="${cancion.genero}"></td>
+            <td>
+                <a th:href="${cancion.url}" target="_blank" title="Escuchar"  class="ms-3">
+                    <i class="fab fa-spotify" style="font-size: 20px; color: #1DB954;"></i>
+                </a>
+            </td>
+
+
+        </tr>
+
+        </tbody>
+    </table>
+    <p class="total" th:text="'Total de canciones no recomendadas: ' + ${conteoTristes}"></p>
 
     <h3 class="note">Nota sobre la Salud Mental</h3>
     <p>La salud mental es una parte esencial de nuestro bienestar general. Es importante buscar apoyo y cuidado cuando lo necesitemos.</p>
